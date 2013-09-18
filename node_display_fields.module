@@ -336,11 +336,13 @@ function node_display_fields_field_formatter_view($entity_type, $entity, $field,
         $element[] = array('#markup' => $output);        
       } elseif ($instance['widget']['type'] == 'node_display_fields_created_date') {
         $created_date_format = !empty($display['settings']['created_date_format']) ? $display['settings']['created_date_format'] : 'd/m/Y - H:i';                
-        $output = date($created_date_format, $entity->created);
+        //$output = date($created_date_format, $entity->created);
+        $output = format_date($entity->created, 'custom', $created_date_format);
         $element[] = array('#markup' => $output);
       } elseif ($instance['widget']['type'] == 'node_display_fields_updated_date') {
         $updated_date_format = !empty($display['settings']['updated_date_format']) ? $display['settings']['updated_date_format'] : 'd/m/Y - H:i';
-        $output = date($updated_date_format, $entity->changed);
+        //$output = date($updated_date_format, $entity->changed);
+        $output = format_date($entity->changed, 'custom', $updated_date_format);
         $element[] = array('#markup' => $output);
       } elseif ($instance['widget']['type'] == 'node_display_fields_author') {              
         $format = !empty($display['settings']['author_format']) ? $display['settings']['author_format'] : 'Submitted by !author';        
